@@ -81,4 +81,21 @@ class LandingController extends Controller
     {
         //
     }
+
+    public function cart()
+    {
+        return view('pages.cart');
+    }
+    public function checkout()
+    {
+        return view('pages.checkout');
+    }
+    public function shop()
+    {
+        return view('pages.shop');
+    }
+    public function single_product()
+    {
+        return view('pages.single-product');
+    }
 }

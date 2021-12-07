@@ -11,11 +11,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop page</a></li>
-                    <li><a href="single-product.html">Single product</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="checkout.html">Checkout</a></li>
+                    <li class="{{'/' == request()->path() ? 'active' : ''}}"><a href="{{url('/')}}">Home</a></li>
+                    <li class="{{'shop' == request()->path() ? 'active' : ''}}"><a href="{{url('/shop')}}">Shop
+                            page</a></li>
+                    <li class="{{'single-product' == request()->path() ? 'active' : ''}}"><a
+                            href="{{url('/single-product')}}">Single product</a></li>
+                    <li class="{{'cart' == request()->path() ? 'active' : ''}}"><a href="{{url('/cart')}}">Cart</a></li>
+                    <li class="{{'checkout' == request()->path() ? 'active' : ''}}"><a
+                            href="{{url('/checkout')}}">Checkout</a></li>
                     <li><a href="#">Category</a></li>
                     <li><a href="#">Others</a></li>
                     <li><a href="#">Contact</a></li>

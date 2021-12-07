@@ -14,8 +14,12 @@ use App\Http\Controllers\LandingController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+Route::get('/cart', [LandingController::class, 'cart']);
+Route::get('/checkout', [LandingController::class, 'checkout']);
+Route::get('/shop', [LandingController::class, 'shop']);
+Route::get('/single-product', [LandingController::class, 'single_product']);
 Route::resource('/', LandingController::class);

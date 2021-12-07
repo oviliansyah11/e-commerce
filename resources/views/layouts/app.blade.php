@@ -3,7 +3,7 @@
 
 <head>
     @include('includes.meta')
-    <title>Document</title>
+    <title>@yield('title')</title>
     @include('includes.style')
 </head>
 
