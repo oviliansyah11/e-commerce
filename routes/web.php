@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::get('/checkout', [LandingController::class, 'checkout']);
 Route::get('/shop', [LandingController::class, 'shop']);
 Route::get('/single-product', [LandingController::class, 'single_product']);
 Route::resource('/', LandingController::class);
+
+Route::resource('/admin', DashboardController::class);
