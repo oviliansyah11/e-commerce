@@ -82,4 +82,17 @@ class DashboardController extends Controller
     {
         //
     }
+
+    public function order()
+    {
+        return view('pages.admin.order');
+    }
+    public function product()
+    {
+        return view('pages.admin.product');
+    }
+    public function stock()
+    {
+        return view('pages.admin.stock');
+    }
 }
