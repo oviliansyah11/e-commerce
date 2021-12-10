@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('photo')->nullable();
             $table->integer('stock');
             $table->foreignId('brand_id');
+            $table->foreignId('category_id');
             $table->timestamps();
         });
     }

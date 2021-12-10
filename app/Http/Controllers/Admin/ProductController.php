@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Brand;
-use App\Models\Category;
+
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -19,7 +19,7 @@ class ProductController extends Controller
     {
         $product = Product::all();
         return view('pages.admin.product.index', [
-            'product' => $product
+            'product' => $product,
         ]);
     }
 
@@ -30,12 +30,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $brand = Brand::all();
-        $model = $brand->unique('category_id');
-        return view('pages.admin.product.create', [
-            'model' => $model,
-            'brand' => $brand
-        ]);
     }
 
     /**
@@ -46,7 +40,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $model = new Product;
+        $model->name = $request->product_name;
+        $model->category_id = $request->get('category');
+        $model->brand_id = $request->get('brand');
+        $model->description = $request->description;
+        $model->price = $request->price;
+        $model->stock = $request->stock;
+        $model->save();
+        return redirect('/product');
     }
 
     /**
@@ -92,5 +94,10 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getSelected($id)
+    {
+        echo $id;
     }
 }

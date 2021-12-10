@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BrandRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -37,13 +38,13 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BrandRequest $request)
     {
         $model = new Brand;
         $model->name = $request->brand_name;
         $model->category_id = $request->get('category');
         $model->save();
-        return redirect('/brand');
+        return redirect('/brand')->with('success', 'Successfully Created Category');
     }
 
     /**
@@ -65,7 +66,12 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        $brand = Brand::find($id);
+        $category = Category::all();
+        return view('pages.admin.brand.edit', [
+            'brand' => $brand,
+            'category' => $category
+        ]);
     }
 
     /**
@@ -75,9 +81,13 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BrandRequest $request, $id)
     {
-        //
+        $model = Brand::find($id);
+        $model->name = $request->brand_name;
+        $model->category_id = $request->get('category');
+        $model->save();
+        return redirect('/brand')->with('success', 'Successfully Updated Category');
     }
 
     /**
@@ -88,6 +98,8 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $brand = Brand::find($id);
+        $brand->delete();
+        return redirect('/brand')->with('success', 'Successfully Deleted Category');
     }
 }

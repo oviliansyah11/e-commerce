@@ -17,15 +17,21 @@
         <div class="col-md-6">
             <label for="inputCity" class="form-label">Brand Name</label>
             <input type="text" class="form-control" name="brand_name">
+            @foreach ($errors->get('brand_name') as $msg)
+            <p class="text-danger">{{$msg}}</p>
+            @endforeach
         </div>
         <div class="col-md-6">
             <label class="form-label">Category</label>
             <select class="form-select" name="category">
-                <option selected>Select Category</option>
+                <option selected value="">Select Category</option>
                 @foreach ($category as $item)
                 <option value="{{$item->id}}">{{$item->name}}</option>
                 @endforeach
             </select>
+            @foreach ($errors->get('category') as $msg)
+            <p class="text-danger">{{$msg}}</p>
+            @endforeach
         </div>
         <div class="row mt-2">
             <div class="col">

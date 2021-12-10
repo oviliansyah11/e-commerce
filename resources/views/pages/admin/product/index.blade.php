@@ -12,7 +12,7 @@
     </div>
 
     <div class="mb-2">
-        <a href="{{url('product/create')}}" class="btn btn-success"><strong>Add Product</strong></a>
+        <a href="{{url('/handleSelect')}}" class="btn btn-success"><strong>Add Product</strong></a>
     </div>
 
     <table id="example" class="table table-striped" style="width:100%">

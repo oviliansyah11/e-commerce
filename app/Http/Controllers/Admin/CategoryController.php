@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -36,12 +37,12 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $model = new Category;
         $model->name = $request->category_name;
         $model->save();
-        return redirect('/category');
+        return redirect('/category')->with('success', 'Successfully Created Category');
     }
 
     /**
@@ -63,7 +64,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('pages.admin.category.edit', ['category' => $category]);
     }
 
     /**
@@ -73,9 +75,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $model = Category::find($id);
+        $model->name = $request->category_name;
+        $model->save();
+        return redirect('/category')->with('success', 'Successfully Updated Category');
     }
 
     /**
@@ -86,6 +91,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+        return redirect('/category')->with('success', 'Successfully Deleted Category');
     }
 }

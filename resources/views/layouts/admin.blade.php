@@ -18,7 +18,7 @@
         @yield('content')
         @include('includes.admin.footer')
         @include('includes.admin.script')
-
+        @yield('js')
 </body>
 
 </html>

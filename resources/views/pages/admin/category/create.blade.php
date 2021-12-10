@@ -19,6 +19,9 @@
                     <div class="col">
                         <label>Category Name</label>
                         <input type="text" class="form-control" name="category_name">
+                        @foreach ($errors->get('category_name') as $msg)
+                        <p class="text-danger">{{$msg}}</p>
+                        @endforeach
                     </div>
                 </div>
                 <div class="row mt-2">
