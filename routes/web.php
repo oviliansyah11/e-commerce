@@ -24,7 +24,7 @@ use App\Http\Controllers\HandleSelect;
 //     return view('pages.index');
 // });
 
-// Route::get('/dashboard', function () {
+// Route::get('/admin', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
@@ -36,7 +36,7 @@ Route::get('/shop', [LandingController::class, 'shop']);
 Route::get('/single-product', [LandingController::class, 'single_product']);
 
 // ROUTE ADMIN
-Route::resource('/admin', DashboardController::class);
+Route::resource('/admin', DashboardController::class)->middleware(['auth']);
 Route::resource('/product', ProductController::class);
 Route::resource('/category', CategoryController::class);
 Route::resource('/brand', BrandController::class);
@@ -49,4 +49,4 @@ Route::get('/getSelected/{id}', [HandleSelect::class, 'getSelected']);
 Route::get('/stock', [DashboardController::class, 'stock']);
 Route::get('/order', [DashboardController::class, 'order']);
 
-// require __DIR__ . '/auth.php';
+require __DIR__ . '/auth.php';

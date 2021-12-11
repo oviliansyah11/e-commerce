@@ -23,16 +23,16 @@
 
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
-            <tr class="text-center">
-                <th>ID</th>
+            <tr>
+                <th>No</th>
                 <th>Category Name</th>
-                <th colspan="2" width="10%">Action</th>
+                <th colspan="2" width="5%" class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($category as $item)
-            <tr class="text-center">
-                <td>{{$item->id}}</td>
+            @foreach ($category as $key => $item)
+            <tr>
+                <td>{{$key+1}}</td>
                 <td>{{$item->name}}</td>
                 <td>
                     <a href="{{url('category/'.$item->id . '/edit')}}" class="btn-info btn"><i

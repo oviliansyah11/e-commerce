@@ -24,26 +24,34 @@
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>No</th>
+                <th>Photo</th>
                 <th>Brand Name</th>
                 <th>Category</th>
-                <th colspan="2" width="10%">Action</th>
+                <th colspan="2" width="5%" class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($brand as $item)
+            @foreach ($brand as $key => $item)
             <tr>
-                <td>{{$item->id}}</td>
+                <td>{{$key+1}}</td>
+                <td>
+                    @if (strlen($item->photo) > 0)
+                    <img src="{{asset('brands/'.$item->photo)}}" height="70px">
+                    @endif
+                </td>
                 <td>{{$item->name}}</td>
                 <td>{{$item->category->name}}</td>
                 <td>
-                    <a href="{{url('brand/'.$item->id . '/edit')}}" class="btn-info btn"><i class="far fa-edit"></i></a>
+                    <a href="{{url('brand/'.$item->id . '/edit')}}" class="btn-info btn" title="Edit"><i
+                            class="far fa-edit"></i></a>
                 </td>
                 <td>
                     <form action="{{url('brand/' . $item->id)}}" method="post">
                         @csrf
                         <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn-danger btn"><i class="fas fa-trash-alt"></i></button>
+                        <button type="submit" class="btn-danger btn" title="Delete"><i
+                                class="fas fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>

@@ -15,14 +15,14 @@
     <form action="{{url('brand/'. $brand->id)}}" method="post" class="row">
         @csrf
         <input type="hidden" name="_method" value="PUT">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label for="inputCity" class="form-label">Brand Name</label>
             <input type="text" class="form-control" name="brand_name" value="{{$brand->name}}">
             @foreach ($errors->get('brand_name') as $msg)
             <p class="text-danger">{{$msg}}</p>
             @endforeach
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label class="form-label">Category</label>
             <select class="form-select" name="category" required>
                 <option selected value="">Select Category</option>
@@ -35,6 +35,13 @@
             @foreach ($errors->get('category') as $msg)
             <p class="text-danger">{{$msg}}</p>
             @endforeach
+        </div>
+        <div class="col-md-4">
+            <label>Photo</label>
+            <input type="file" class="form-control" name="photo">
+            @if (strlen($brand->photo) > 0)
+            <img src="{{asset('brands/'.$brand->photo)}}">
+            @endif
         </div>
         <div class="row mt-2">
             <div class="col">

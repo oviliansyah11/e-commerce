@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\BrandRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\BrandRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class BrandController extends Controller
 {
@@ -43,8 +44,14 @@ class BrandController extends Controller
         $model = new Brand;
         $model->name = $request->brand_name;
         $model->category_id = $request->get('category');
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            $filename = time() . str_replace(" ", "", $file->getClientOriginalName());
+            $file->move('brands', $filename);
+            $model->photo = $filename;
+        }
         $model->save();
-        return redirect('/brand')->with('success', 'Successfully Created Category');
+        return redirect('/brand')->with('success', 'Successfully Created Brand');
     }
 
     /**
@@ -86,8 +93,16 @@ class BrandController extends Controller
         $model = Brand::find($id);
         $model->name = $request->brand_name;
         $model->category_id = $request->get('category');
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            $filename = time() . str_replace(" ", "", $file->getClientOriginalName());
+            $file->move('brands', $filename);
+
+            File::delete('brands', $model->photo);
+            $model->photo = $filename;
+        }
         $model->save();
-        return redirect('/brand')->with('success', 'Successfully Updated Category');
+        return redirect('/brand')->with('success', 'Successfully Updated Brand');
     }
 
     /**
@@ -100,6 +115,6 @@ class BrandController extends Controller
     {
         $brand = Brand::find($id);
         $brand->delete();
-        return redirect('/brand')->with('success', 'Successfully Deleted Category');
+        return redirect('/brand')->with('success', 'Successfully Deleted Brand');
     }
 }

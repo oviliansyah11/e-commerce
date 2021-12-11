@@ -16,7 +16,7 @@
             <form action="{{url('/category')}}" method="post">
                 @csrf
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-4">
                         <label>Category Name</label>
                         <input type="text" class="form-control" name="category_name">
                         @foreach ($errors->get('category_name') as $msg)
