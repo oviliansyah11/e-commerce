@@ -40,9 +40,11 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item {{Request::is('product') ? 'active' : ''}}"
                         href="{{url('/product')}}">Product</a>
+                    @if (Auth::user()->roles === 'ADMIN')
                     <a class="collapse-item {{Request::is('category') ? 'active' : ''}}"
                         href="{{url('/category')}}">Category</a>
                     <a class="collapse-item {{Request::is('brand') ? 'active' : ''}}" href="{{url('/brand')}}">Brand</a>
+                    @endif
                 </div>
             </div>
         </li>

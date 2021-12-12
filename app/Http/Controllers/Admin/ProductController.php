@@ -48,7 +48,7 @@ class ProductController extends Controller
         $model->category_id = $request->get('category');
         $model->brand_id = $request->get('brand');
         $model->description = $request->description;
-        $model->price = $request->price;
+        $model->price = (int)$request->price;
         $model->stock = $request->stock;
         if ($request->file('photo')) {
             $file = $request->file('photo');

@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-4">
                 <label for="inputEmail4">Price</label>
-                <input type="number" class="form-control" name="price">
+                <input type="number" class="form-control" name="price" id="price">
                 @foreach ($errors->get('price') as $msg)
                 <p class="text-danger">{{$msg}}</p>
                 @endforeach
@@ -99,6 +99,8 @@
             })
         }
     }
+
+
 </script>
 @stop
 
