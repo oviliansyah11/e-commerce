@@ -32,7 +32,7 @@
                 </button>
             </div>
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <form action="#" method="post">
+            <form action="{{route('logout')}}" method="post">
                 @csrf
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>

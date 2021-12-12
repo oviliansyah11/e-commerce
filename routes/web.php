@@ -1,12 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HandleSelect;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\HandleSelect;
+use App\Http\Controllers\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +38,8 @@ Route::get('/shop', [LandingController::class, 'shop']);
 Route::get('/single-product', [LandingController::class, 'single_product']);
 
 // ROUTE ADMIN
-Route::resource('/admin', DashboardController::class)->middleware(['auth']);
+Route::resource('/admin', DashboardController::class)->middleware('auth');
+Route::resource('/profile', ProfileController::class);
 Route::resource('/product', ProductController::class);
 Route::resource('/category', CategoryController::class);
 Route::resource('/brand', BrandController::class);
@@ -49,4 +52,5 @@ Route::get('/getSelected/{id}', [HandleSelect::class, 'getSelected']);
 Route::get('/stock', [DashboardController::class, 'stock']);
 Route::get('/order', [DashboardController::class, 'order']);
 
-require __DIR__ . '/auth.php';
+// Route::get('/admin', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin');
+Auth::routes();

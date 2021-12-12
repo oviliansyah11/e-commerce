@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class DashboardController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +15,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $product = DB::table('products')->count();
-        return view('pages.admin.dashboard', [
-            'product' => $product
-        ]);
     }
 
     /**
@@ -51,7 +46,10 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('pages.profile', [
+            'user' => $user
+        ]);
     }
 
     /**
